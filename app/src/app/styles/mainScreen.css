@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap');
+
+.container {
+  text-align: center;
+}
+
+.container h1 {
+  font-family: 1.25rem;
+  margin-top: .7rem;
+  margin-bottom: .5rem;
+  font-weight: bold;
+}
+
+.container h2 {
+  font-family: .8rem;
+  margin-bottom: .9rem;
+}
+
+.container input {
+  text-align: center;
+  width: 80%;
+  padding: .6rem .7rem;
+  margin-bottom: 1.2rem;
+  border-radius: .4rem;
+  font-size: 1.15rem;
+  border: 1px solid #000;
+}
+
+.container button {
+  cursor: pointer;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: .4rem;
+  font-size: 1.03rem;
+  padding: .3rem;
+}
