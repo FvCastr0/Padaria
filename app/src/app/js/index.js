@@ -10,7 +10,7 @@ button.addEventListener("click", async (e) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ value: input.value })
+    body: JSON.stringify({ value: input.value, date: new Date() })
   })
     .then(req => {
       console.log(req);

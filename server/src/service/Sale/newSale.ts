@@ -3,7 +3,7 @@ import { UUID } from 'mongodb';
 import ResponseData from '../../interface/ResponseData';
 
 class NewSale {
-  async execute({ value }: { value: number }): Promise<ResponseData> {
+  async execute({ value, date }: { value: number, date: Date }): Promise<ResponseData> {
     const sale = new PrismaClient().sale;
     const id = new UUID();
     const dayID = new UUID();
@@ -11,7 +11,6 @@ class NewSale {
       timeZone: 'America/Sao_Paulo',
       locale: 'pt-BR'
     }
-    const date = new Date();
     const time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
     const day = date.toLocaleDateString('pt-BR', dateOptions)
     const month = Number(day.slice(3, 5))
