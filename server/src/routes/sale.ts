@@ -18,9 +18,10 @@ saleRouter.get('/sale/:id', async (req: Request<{ id: string }>, res: Response) 
 
 saleRouter.post('/sale/newSale', async (req: Request, res: Response) => {
   const valueBody = req.body.value;
+  const date = req.body.date;
   const value = Number(valueBody);
   if (value > 0 && value !== 0) {
-    const sale = await newSale.execute({ value })
+    const sale = await newSale.execute({ value, date })
     res.send({ msg: sale.msg }).status(sale.statusCode);
   } else {
     res.send({ msg: "Valor deve ser diferente de zero" }).status(400);

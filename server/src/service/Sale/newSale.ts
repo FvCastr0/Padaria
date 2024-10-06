@@ -2,33 +2,32 @@ import { PrismaClient } from '@prisma/client';
 import { UUID } from 'mongodb';
 import ResponseData from '../../interface/ResponseData';
 
+interface DateProps {
+  time: string,
+  day: string
+}
+
 class NewSale {
-  async execute({ value, date }: { value: number, date: Date }): Promise<ResponseData> {
+  async execute({ value, date }: { value: number, date: DateProps }): Promise<ResponseData> {
     const sale = new PrismaClient().sale;
     const id = new UUID();
     const dayID = new UUID();
-    const dateOptions = {
-      timeZone: 'America/Sao_Paulo',
-      locale: 'pt-BR'
-    }
-    const time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-    const day = date.toLocaleDateString('pt-BR', dateOptions)
-    const month = Number(day.slice(3, 5))
+    const month = Number(date.day.slice(3, 5))
 
     try {
       await sale.create({
         data: {
           id: String(id),
           value,
-          date: day,
-          time,
+          date: date.day,
+          time: date.time,
           day: {
             connectOrCreate: {
               where: {
-                day
+                day: date.day
               },
               create: {
-                day,
+                day: date.day,
                 month,
                 id: String(dayID)
               }
