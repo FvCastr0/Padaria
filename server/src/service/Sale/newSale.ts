@@ -7,9 +7,13 @@ class NewSale {
     const sale = new PrismaClient().sale;
     const id = new UUID();
     const dayID = new UUID();
+    const dateOptions = {
+      timeZone: 'America/Sao_Paulo',
+      locale: 'pt-BR'
+    }
     const date = new Date();
     const time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-    const day = date.toLocaleDateString('pt-BR')
+    const day = date.toLocaleDateString('pt-BR', dateOptions)
     const month = Number(day.slice(3, 5))
 
     try {
